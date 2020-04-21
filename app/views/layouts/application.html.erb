@@ -9,6 +9,29 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<div id="slidemenu">
+  <ul class="nav navbar-nav nabvar-right" date-hove="dropdown" date-animations="zoomIn fadeIn fadeInUp fadeIn">
+    <% if user_signed_in? %>
+      <li class="">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+      <li class="">
+        <%= link_to '投稿フォーム', books_path %>
+      </li>
+      <li class="">
+        <%= link_to 'マイページ', user_path(current_user.id) %>
+      </li>
+      <% else %>
+      <li class="">
+        <%= link_to "新規登録", new_user_registration_path %>
+      </li>
+      <li class=""> 
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
   <body>
     <%= yield %>
   </body>
