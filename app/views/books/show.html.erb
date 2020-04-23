@@ -1,6 +1,8 @@
 <h2>投稿詳細</h2>
 
-
+<% if flash[:success] %>
+  <p><%= flash[:success] %></p>
+<% end %>
 
 <h3>タイトル</h3>
 <%= @book.title %>
@@ -9,6 +11,6 @@
 <%= @book.body %>
 
 
-<% if @book.user_id == current_user.id %>
-  <%= link_to "削除", book_path, method: :delete %>
-<% end %>
+  <p><%= link_to '戻る', books_path %></p>
+  <p><%= link_to '編集', edit_book_path %></p>
+
