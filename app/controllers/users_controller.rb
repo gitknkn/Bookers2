@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @book = Book.new
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
+    @book = Book.new
+    @users = User.all
     # @book = @user.book.page(params[:page]).reverse_order
   end
 
@@ -18,6 +25,6 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:name, :profile_image, :profile)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 end

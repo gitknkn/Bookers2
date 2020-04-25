@@ -1,14 +1,14 @@
 <%= form_for(@user) do |f| %>
   <div class="form-group has-icon">
       <label class="control-label sr-only" for="inputEmail">Name</label>
-      <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+      <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"name"%>
       <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
   </div>
 
 
   <div class="form-group has-icon">
     <%= f.label :profile %><br />
-    <%= f.text_area :profile, autofocus: true %>
+    <%= f.text_area :introduction, autofocus: true %>
   </div>
 
 

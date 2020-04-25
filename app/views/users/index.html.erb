@@ -1,0 +1,44 @@
+  <% if flash[:success] %>
+    <h2><%= flash[:success] %></h2>
+  <% end %>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-4 ">
+      <h2>New book</h2>
+      <%= form_for(@book) do |f| %>
+        <p> タイトル </p>
+        <%= f.text_field :title %>
+        <p> 本文 </p>
+        <%= f.text_area :body %>
+        <p><%= f.submit %></p>
+      <% end %>
+      <% if @book.errors.any? %>
+        <h3><%= @book.errors.count %>errors</h3>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %> 
+    </div>
+
+      <h2>Users</h2>
+      <div class="col-xs-8">
+        <table>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+          </tr>
+        </table>
+        <% @users.each do |f| %>
+        <table>
+          <tr>
+            <td><%= attachment_image_tag f, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+            <td><%= f.name %></td>
+          </tr>
+          <%= link_to "詳細", user_path(current_user.id) %>
+        </table>
+        <% end %>
+    </div>
+  </div>
+</div>

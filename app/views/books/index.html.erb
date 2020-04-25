@@ -1,33 +1,45 @@
-<h2>投稿フォーム</h2>
-
+<body>
 <% if flash[:success] %>
   <p><%= flash[:success] %></p>
 <% end %>
 
-<%= form_for(@book) do |f| %>
 
-<p> タイトル </p>
-<%= f.text_field :title %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-4 ">
+      <h2>New book</h2>
+      <%= form_for(@book) do |f| %>
+        <p> タイトル </p>
+        <%= f.text_field :title %>
 
-<p> 本文 </p>
-<%= f.text_area :body %>
-<%= f.submit %>
+        <p> 本文 </p>
+        <%= f.text_area :body %>
+        <p><%= f.submit %></p>
+      <% end %>
+      <% if @book.errors.any? %>
+        <h3><%= @book.errors.count %>errors</h3>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %> 
+    </div>
 
-<% end %> 
+    <div class="col-xs-8">
 
-<% if @book.errors.any? %>
-  <h3><%= @book.errors.count %>errors</h3>
-<% @book.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
-<% end %>
-<% end %> 
+      <h2>Books</h2>
+      <% @books.each do |f| %>
+
+        <p><%= f.title %></p>
+        <p><%= f.body %></p>
+
+        <%= link_to "詳細", book_path(f.id) %>
 
 
-<% @books.each do |f| %>
 
-<p><%= f.title %></p>
-<p><%= f.body %></p>
+      <% end %>
 
-<%= link_to "詳細", book_path(f.id) %>
-<% end %>
+    </div>
+  </div>
+</div>
+</body>
 

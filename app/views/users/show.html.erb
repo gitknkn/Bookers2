@@ -1,11 +1,59 @@
-<h1> ユーザー詳細 </h1>
+<% if flash[:success] %>
+  <p><%= flash[:success] %></p>
+<% end %>
 
+<h2> User info </h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-4 ">
+    <div class="profile-container">
+      <table>
+        <tbody>
+          <tr>
+            <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+          </tr>
+          <tr>
+            <th>name</th><td><p class="profile-name"><%= @user.name %></p></td>     
+          </tr>
+          <tr>
+          <th>introduction</th><td><p class="introduction"><%= @user.introduction %></p></td>
+          </tr>
+          <tr>
+          <% if @user.id == current_user.id %>
+            <td><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></td>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<div class="profile-container">
-    <h3 class="profile-name"><%= @user.name %></h3>
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %> 
-    <h3 class="profile"><%= @user.profile %></h3>
-	<% if @user.id == current_user.id %>
-        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
-    <% end %>
+      <h2>New book</h2>
+      <%= form_for(@book) do |f| %>
+        <p> タイトル </p>
+        <%= f.text_field :title %>
+
+        <p> 本文 </p>
+        <%= f.text_area :body %>
+        <p><%= f.submit %></p>
+      <% end %>
+      <% if @book.errors.any? %>
+        <h3><%= @book.errors.count %>errors</h3>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %> 
+    </div>
+
+    <div class="col-xs-8">
+
+      <h2>Books</h2>
+      <% @users.each do |f| %>
+
+        <p><%= f.name %></p>
+        <p><%= f.introduction %></p>
+
+        <%= link_to "詳細", book_path(f.id) %>
+      <% end %>
+    </div>
+  </div>
 </div>
