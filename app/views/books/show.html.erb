@@ -3,49 +3,51 @@
   <div class="row">
     <div class="col-xs-3 ">
     <h2> User info </h2>
-
-      <table>
-        <tbody>
-          <tr>
-            <td><%= attachment_image_tag @user, :profile_image, size:'100x100', format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
-          </tr>
-          <tr>
-            <th>name</th><td><p class="profile-name"><%= @user.name %></p></td>     
-          </tr>
-          <tr>
-          <th>introduction</th><td><p class="introduction"><%= @user.introduction %></p></td>
-          </tr>
-          <tr>
-          <% if @user.id == current_user.id %>
-            <td><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></td>
+    <table>
+      <tbody>
+        <tr>
+          <td><%= attachment_image_tag @user, :profile_image, size:'100x100', format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+        </tr>
+        <tr>
+          <th>name</th><td><p class="profile-name"><%= @user.name %></p></td>     
+        </tr>
+        <tr>
+        <th>introduction</th><td><p class="introduction"><%= @user.introduction %></p></td>
+        </tr>
+        <tr>
+        <% if @user.id == current_user.id %>
+          <td>
+            <%= link_to(edit_user_path(@user)) do %>
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          </td>
           <% end %>
-          </tr>
-        </tbody>
-      </table>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
 
 
 
-      <h2>New book</h2>
-      <%= form_for(@booknew) do |f| %>
-        <p> Title </p>
-        <%= f.text_field :title %>
-        <p> Opinion </p>
-        <%= f.text_area :body %>
-        <p><%= f.submit %></p>
-      <% end %>
-      <% if @book.errors.any? %>
-        <p>error</p>
-        <h3><%= @book.errors.count %>errors</h3>
-        <% @book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      <% end %> 
-    </div>
+<h2>New book</h2>
+  <%= form_for(@booknew) do |f| %>
+    <p> Title </p>
+    <%= f.text_field :title %>
+    <p> Opinion </p>
+    <%= f.text_area :body %>
+    <%= f.submit "Create Book", class: "btn btn-primary col-xs-12" %>
+  <% end %>
+  <% if @book.errors.any? %>
+    <p>error</p>
+    <h3><%= @book.errors.count %>errors</h3>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  <% end %> 
+</div>
 
 <% if flash[:success] %>
   <p><%= flash[:success] %></p>
 <% end %>
-
 
 <div class="col-xs-9 ">
 <h2>Book detail</h2>

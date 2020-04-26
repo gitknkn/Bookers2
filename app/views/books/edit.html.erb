@@ -11,7 +11,7 @@
 
 <p> Opinion </p>
 <%= f.text_area :body %>
-<p><%= f.submit %></p>
+<%= f.submit "Update Book", class: "btn btn-primary col-xs-12" %>
 <% end %>
 <span><%= link_to 'Show', book_path(params[:id]) %></span>
 <span><%= link_to '削除', book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
