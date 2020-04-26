@@ -1,24 +1,33 @@
+<body>
 
-
-<h2>投稿編集ページ</h2>
+<div class="container">
+  <div class="row">
+  <div class="col-xs-3 ">
+<h2>Editing Book</h2>
 
 <%= form_for(@book) do |f| %>
-<p> タイトル </p>
+<p> Title </p>
 <%= f.text_field :title %>
 
-<p> 本文 </p>
+<p> Opinion </p>
 <%= f.text_area :body %>
 <p><%= f.submit %></p>
 <% end %>
+  </div>
 
-<span><%= link_to '戻る', book_path(params[:id]) %></span>
+<span><%= link_to 'Show', book_path(params[:id]) %></span>
 <span><%= link_to '削除', book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
+<span><%= link_to 'Back', books_path %></span>
 
+
+<div class="col-xs-9">
 <% if @book.errors.any? %>
   <h3><%= @book.errors.count %>errors</h3>
 <% @book.errors.full_messages.each do |message| %>
   <li><%= message %></li>
 <% end %>
 <% end %> 
-
-
+    </div>
+  </div>
+</div>
+</body>
