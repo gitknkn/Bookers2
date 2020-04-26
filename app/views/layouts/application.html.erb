@@ -11,9 +11,12 @@
 
   <body>
   <nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-
+	<div class="container">
+		<div class ="row">
+		<div class = "col-xs-10">
+		<div class="navbar-left">
 		<span class="text-muted">Bookers</span>
+		</div>
 		<div class="collapse navbar-collapse" id="navbarEexample7">
 		  <div class="navbar-right">
 			<ul class="nav navbar-nav ">
@@ -29,16 +32,13 @@
 				<li><span class="glyphicon glyphicon-log-in" aria-hidden="true"><%= link_to 'login', new_user_session_path %></span></li>
       <% end %>
 			</ul>
+		</div>
+		</div>
 		</div>	
 		</div>
 	</div>
 </nav>
-<div class = "container">
-	<div class ="row">
-		<div class = "col-xs-9">
-		</div>
-	</div>
-</div>
+
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
@@ -46,6 +46,12 @@
     <%= yield %>
 </body>
 <footer>
-  <p class="text-right">CopyRight Infratop.inc</p>
+<div class = "container">
+	<div class ="row">
+		<div class = "col-xs-3 col-xs-offset-9">
+		<p class="text-right">CopyRight Infratop.inc</p>
 </footer>
+		</div>
+	</div>
+</div>
 </html>
