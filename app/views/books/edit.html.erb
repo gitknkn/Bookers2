@@ -13,12 +13,10 @@
 <%= f.text_area :body %>
 <p><%= f.submit %></p>
 <% end %>
-  </div>
-
 <span><%= link_to 'Show', book_path(params[:id]) %></span>
 <span><%= link_to '削除', book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
 <span><%= link_to 'Back', books_path %></span>
-
+  </div>
 
 <div class="col-xs-9">
 <% if @book.errors.any? %>

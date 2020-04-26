@@ -1,8 +1,9 @@
-<h2> User info </h2>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-3 ">
-    <div class="profile-container">
+    <h2> User info </h2>
+
       <table>
         <tbody>
           <tr>
@@ -21,7 +22,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
 
 
 
@@ -42,39 +42,33 @@
       <% end %> 
     </div>
 
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-3 ">
 <% if flash[:success] %>
   <p><%= flash[:success] %></p>
 <% end %>
 
+
+<div class="col-xs-9 ">
 <h2>Book detail</h2>
-<table>
+<table class="table">
 <tr>
-<th></th>
-<th> Title </th>
-<th> Opinion </th>
-</tr>
-<%= link_to (@book.user) do %>
-<%= attachment_image_tag @book.user, :profile_image, size: '100x100', format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+<td><%= link_to (@book.user) do %>
+<%= attachment_image_tag @book.user, :profile_image, size: '30x30', format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>  </br>
+<p></p>
 <%= @book.user.name %>
+</td>
 <% end %>
-<tr>
-<td></td>
 <td><%= @book.title %></td>
 <td><%= @book.body %></td>
+<% if @book.user == current_user %>
+<td><span class="label label-success">
+  <%= link_to 'Edit', edit_book_path(@book) %>
+</span></td>
+<td>
+<%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "label label-danger" %>
+</td>
+<% end %>
+</th>
 </tr>
 </table>
-
-<% if @book.user == current_user %>
-  <p><%= link_to 'Edit', edit_book_path(@book) %></p>
-  <p><%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
-<% end %>
-
-</div>
-</div>
 </div>
 </div>

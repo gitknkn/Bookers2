@@ -3,10 +3,11 @@
   <p><%= flash[:success] %></p>
 <% end %>
 
-<h2> User info </h2>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-3 ">
+    <h2> User info </h2>
     <div class="profile-container">
       <table>
         <tbody>
@@ -49,8 +50,11 @@
 
     <table>
     <div class="col-xs-9">
+      <tr>
+      <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      </tr>
 
       <h2>Books</h2>
       <% @books.each do |f| %>

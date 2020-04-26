@@ -3,10 +3,11 @@
     <h2><%= flash[:success] %></h2>
   <% end %>
 
-<h2> User info </h2>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-3 ">
+    <h2> User info </h2>
     <div class="profile-container">
       <table>
         <tbody>
@@ -32,10 +33,9 @@
       <%= form_for(@book) do |f| %>
         <p> Title </p>
         <%= f.text_field :title %>
-
         <p> Opinion </p>
         <%= f.text_area :body %>
-        <p><%= f.submit %></p>
+        <%= f.submit %>
       <% end %>
       <% if @book.errors.any? %>
         <h3><%= @book.errors.count %>errors</h3>
@@ -47,18 +47,22 @@
 
     <div class="col-xs-9">
       <h2>Users</h2>
-        <span>image</span>
-        <span>name</span>
-      <% @users.each do |f| %>
-    <table>
-          <tr>
-          <td><%= attachment_image_tag f, :profile_image, size: '100x100', format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
-          <td><%= f.name %></td>
-          <td><%= link_to "Show", user_path(f.id) %></td>
-          </tr>
+        
+    <table class="table">
+    <tr>
+      <th>image</th>
+      <th>name</th>
+    </tr>
+    <% @users.each do |f| %>
+    <tr>
+      <td><%= attachment_image_tag f, :profile_image, size: '100x100', format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+      <td><%= f.name %></td>
+      <td><%= link_to "Show", user_path(f.id) %></td>
+    </tr>
+    <% end %>
     </table>
         
-      <% end %>
+
      </div>
     </div>
   </div>
