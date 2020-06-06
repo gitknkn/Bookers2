@@ -27,7 +27,6 @@
     </table>
 
 
-
 <h2>New book</h2>
   <%= form_for(@booknew) do |f| %>
     <p> Title </p>
@@ -62,11 +61,11 @@
 <td><%= @book.title %></td>
 <td><%= @book.body %></td>
 <% if @book.user == current_user %>
-<td><span class="label label-success">
-  <%= link_to 'Edit', edit_book_path(@book) %>
-</span></td>
 <td>
-<%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "label label-danger" %>
+  <%= link_to 'Edit', edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %>
+</td>
+<td>
+  <%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "label label-danger" %>
 </td>
 <% end %>
 </th>

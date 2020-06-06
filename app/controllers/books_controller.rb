@@ -14,6 +14,11 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    # 本を投稿する際に、Book.new(book_params)※:title, :bodyは保存される
+    # @book.user_id = current_user.id 
+    # はBookカラムにあるuser_idとcurrent_user.idを一致させないと
+    # user_id(1)が
+
     if @book.save
       flash[:success] = "successfully!!"
       redirect_to book_path(@book.id)
@@ -61,4 +66,3 @@ private
   end
 
 end
-
